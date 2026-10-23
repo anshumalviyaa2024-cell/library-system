@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>BookNest - Library Management</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='library.css') }}">
+
+</head>
+
+<body>
+
+<div class="home-page">
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            📚 BookNest
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('library_login') }}">
+                Login
+            </a>
+
+            <a href="{{ url_for('library_signup') }}">
+                Sign Up
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+
+        <div class="hero-content">
+
+            <span class="hero-badge">
+                SMART LIBRARY MANAGEMENT
+            </span>
+
+
+            <h1>
+
+                Manage Your Library
+
+                <br>
+
+                <span>
+                    Smarter & Simpler.
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                BookNest helps you manage books, students,
+                issue records, returns and library history
+                from one simple platform.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a href="{{ url_for('library_login') }}">
+
+                    <button>
+                        Login to Library →
+                    </button>
+
+                </a>
+
+
+                <a href="{{ url_for('library_signup') }}">
+
+                    <button class="secondary-btn">
+                        Create Account
+                    </button>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO CARD -->
+
+        <div class="hero-card">
+
+
+            <div class="hero-card-header">
+
+                <span>
+                    📊
+                </span>
+
+                <div>
+
+                    <h3>
+                        Library Overview
+                    </h3>
+
+                    <p>
+                        Everything in one place
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="mini-stats">
+
+
+                <div class="mini-card">
+
+                    <strong>
+                        📚
+                    </strong>
+
+                    <div>
+
+                        <small>
+                            Books
+                        </small>
+
+                        <b>
+                            Manage
+                        </b>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mini-card">
+
+                    <strong>
+                        👨‍🎓
+                    </strong>
+
+                    <div>
+
+                        <small>
+                            Students
+                        </small>
+
+                        <b>
+                            Track
+                        </b>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mini-card">
+
+                    <strong>
+                        ↔️
+                    </strong>
+
+                    <div>
+
+                        <small>
+                            Returns
+                        </small>
+
+                        <b>
+                            Monitor
+                        </b>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mini-card">
+
+                    <strong>
+                        📋
+                    </strong>
+
+                    <div>
+
+                        <small>
+                            History
+                        </small>
+
+                        <b>
+                            View
+                        </b>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="card-footer">
+
+                <span class="online-dot"></span>
+
+                Library system ready
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="features">
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                📚
+            </div>
+
+            <h3>
+                Book Management
+            </h3>
+
+            <p>
+                Easily issue, return and search books.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                👨‍🎓
+            </div>
+
+            <h3>
+                Student Records
+            </h3>
+
+            <p>
+                Keep track of students and their books.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <h3>
+                Library History
+            </h3>
+
+            <p>
+                View complete issue and return history.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 BookNest Library Management System
+        </p>
+
+    </footer>
+
+
+</div>
+
+</body>
+
+</html>

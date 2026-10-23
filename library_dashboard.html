@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>BookNest - Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='library.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <nav class="navbar">
+
+        <div class="logo">
+            📚 BookNest
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('library_dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('library_issue') }}">
+                Issue Book
+            </a>
+
+            <a href="{{ url_for('library_books') }}">
+                Books
+            </a>
+
+            <a href="{{ url_for('library_history') }}">
+                History
+            </a>
+
+            <a href="{{ url_for('library_logout') }}">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <div class="dashboard-content">
+
+        <!-- Flash Messages -->
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+
+                {% for category, message in messages %}
+
+                    <div class="flash {{ category }}">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <p class="welcome-text">
+            Welcome back 👋
+        </p>
+
+
+        <h1>
+            Hello, {{ name }}
+        </h1>
+
+
+        <p class="dashboard-subtitle">
+            Manage your library efficiently from one place.
+        </p>
+
+
+        <!-- Statistics -->
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📚
+                </div>
+
+                <h3>
+                    Total Books
+                </h3>
+
+                <strong>
+                    {{ total_books }}
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📖
+                </div>
+
+                <h3>
+                    Issued Books
+                </h3>
+
+                <strong>
+                    {{ issued_books }}
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✅
+                </div>
+
+                <h3>
+                    Returned Books
+                </h3>
+
+                <strong>
+                    {{ returned_books }}
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👨‍🎓
+                </div>
+
+                <h3>
+                    Students
+                </h3>
+
+                <strong>
+                    {{ total_students }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- Quick Actions -->
+
+        <div class="quick-actions">
+
+            <h2>
+                Quick Actions
+            </h2>
+
+
+            <div class="action-buttons">
+
+                <a href="{{ url_for('library_issue') }}">
+
+                    <button type="button">
+                        ➕ Issue New Book
+                    </button>
+
+                </a>
+
+
+                <a href="{{ url_for('library_books') }}">
+
+                    <button type="button">
+                        📚 View All Books
+                    </button>
+
+                </a>
+
+
+                <a href="{{ url_for('library_history') }}">
+
+                    <button type="button">
+                        📋 View History
+                    </button>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>BookNest - Login</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='library.css') }}">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Welcome Back</h1>
+
+        <p>
+            Login to your BookNest account
+        </p>
+
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+
+                {% for category, message in messages %}
+
+                    <div class="flash {{ category }}">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <form method="POST">
+
+            <label>Username</label>
+
+            <input
+                type="text"
+                name="username"
+                placeholder="Enter username"
+                required
+            >
+
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter password"
+                required
+            >
+
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+
+        <p>
+
+            Don't have an account?
+
+            <a href="{{ url_for('library_signup') }}">
+                Create Account
+            </a>
+
+        </p>
+
+    </div>
+
+</body>
+
+</html>

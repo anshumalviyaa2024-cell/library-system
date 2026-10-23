@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>BookNest - Books</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='library.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <nav class="navbar">
+
+        <div class="logo">
+            📚 BookNest
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('library_dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('library_issue') }}">
+                Issue Book
+            </a>
+
+            <a href="{{ url_for('library_books') }}">
+                Books
+            </a>
+
+            <a href="{{ url_for('library_history') }}">
+                History
+            </a>
+
+            <a href="{{ url_for('library_logout') }}">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <div class="dashboard-content">
+
+        <h1>📚 Library Books</h1>
+
+        <p class="dashboard-subtitle">
+            Search and manage all library books
+        </p>
+
+
+        <!-- Flash Messages -->
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+
+                {% for category, message in messages %}
+
+                    <div class="flash {{ category }}">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <!-- Search -->
+
+        <form method="GET" class="search-form">
+
+            <input
+                type="text"
+                name="search"
+                value="{{ search }}"
+                placeholder="Search by Book ID, Book Name or Student Name"
+            >
+
+            <button type="submit">
+                🔍 Search
+            </button>
+
+        </form>
+
+
+        {% if books %}
+
+        <div class="table-container">
+
+            <table>
+
+                <tr>
+
+                    <th>Book ID</th>
+
+                    <th>Book Name</th>
+
+                    <th>Book Number</th>
+
+                    <th>Student</th>
+
+                    <th>Issue Date</th>
+
+                    <th>Due Date</th>
+
+                    <th>Status</th>
+
+                    <th>Fine</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+
+                {% for book in books %}
+
+                <tr>
+
+                    <td>
+                        {{ book["book_id"] }}
+                    </td>
+
+                    <td>
+                        {{ book["book_name"] }}
+                    </td>
+
+                    <td>
+                        {{ book["book_number"] }}
+                    </td>
+
+                    <td>
+                        {{ book["student_name"] }}
+                    </td>
+
+                    <td>
+                        {{ book["issue_date"] }}
+                    </td>
+
+                    <td>
+                        {{ book["due_date"] }}
+                    </td>
+
+
+                    <td>
+
+                        {% if book["status"] == "Returned" %}
+
+                            <span class="status returned">
+                                Returned
+                            </span>
+
+                        {% else %}
+
+                            <span class="status issued">
+                                Issued
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <td>
+
+                        {% if book["fine"] and book["fine"] > 0 %}
+
+                            ₹{{ book["fine"] }}
+
+                        {% else %}
+
+                            ₹0
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <td>
+
+                        {% if book["status"] == "Issued" %}
+
+                            <a
+                                href="{{ url_for('return_book', book_id=book['id']) }}"
+                                onclick="return confirm('Are you sure you want to return this book?');"
+                            >
+
+                                <button
+                                    type="button"
+                                    class="return-btn"
+                                >
+                                    Return
+                                </button>
+
+                            </a>
+
+                        {% else %}
+
+                            <span class="returned-text">
+                                Completed
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+
+        {% else %}
+
+        <div class="empty-box">
+
+            <h3>
+                No Books Found
+            </h3>
+
+            <p>
+                No books match your search.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+
+        <div class="buttons">
+
+            <a href="{{ url_for('library_issue') }}">
+
+                <button type="button">
+                    ➕ Issue New Book
+                </button>
+
+            </a>
+
+            <a href="{{ url_for('library_history') }}">
+
+                <button type="button">
+                    📋 History
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

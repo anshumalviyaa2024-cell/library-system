@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>BookNest - Issue Book</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='library.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <nav class="navbar">
+
+        <div class="logo">
+            📚 BookNest
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('library_dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('library_issue') }}">
+                Issue Book
+            </a>
+
+            <a href="{{ url_for('library_books') }}">
+                Books
+            </a>
+
+            <a href="{{ url_for('library_history') }}">
+                History
+            </a>
+
+            <a href="{{ url_for('library_logout') }}">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <div class="form-page">
+
+        <div class="form-card">
+
+            <h1>📖 Issue a Book</h1>
+
+            <p>
+                Enter book and student details
+            </p>
+
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+
+                {% if messages %}
+
+                    {% for category, message in messages %}
+
+                        <div class="flash {{ category }}">
+                            {{ message }}
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+            {% endwith %}
+
+
+            <form method="POST">
+
+
+                <label>Book ID</label>
+
+                <input
+                    type="text"
+                    name="book_id"
+                    placeholder="Enter Book ID"
+                    required
+                >
+
+
+                <label>Book Name</label>
+
+                <input
+                    type="text"
+                    name="book_name"
+                    placeholder="Enter Book Name"
+                    required
+                >
+
+
+                <label>Book Number</label>
+
+                <input
+                    type="text"
+                    name="book_number"
+                    placeholder="Enter Book Number"
+                    required
+                >
+
+
+                <label>Student Name</label>
+
+                <input
+                    type="text"
+                    name="student_name"
+                    placeholder="Enter Student Name"
+                    required
+                >
+
+
+                <label>Issue Date</label>
+
+                <input
+                    type="date"
+                    name="issue_date"
+                    id="issue_date"
+                    required
+                >
+
+
+                <label>Due Date</label>
+
+                <input
+                    type="date"
+                    name="due_date"
+                    id="due_date"
+                    required
+                >
+
+
+                <button type="submit">
+                    📚 Issue Book
+                </button>
+
+            </form>
+
+
+            <a href="{{ url_for('library_dashboard') }}">
+                ← Back to Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const today = new Date()
+        .toISOString()
+        .split("T")[0];
+
+    document.getElementById("issue_date").value = today;
+
+    document.getElementById("issue_date").min = today;
+
+    document.getElementById("due_date").min = today;
+
+</script>
+
+</body>
+
+</html>
